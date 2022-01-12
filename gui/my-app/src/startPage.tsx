@@ -38,6 +38,7 @@ const StartPage = (props: Props) => {
             power2: player2Power,
             startPlayer: 1,
         };
+		// generate HTTP request to the backend
         fetch('/game/start', {
             method: "POST",
             headers: {
@@ -47,8 +48,9 @@ const StartPage = (props: Props) => {
         }).then((response) => {
             return response.json();
         }).catch((err) => {
-            console.log("what is the err", err);
+            console.log("frontend init the game failed", err);
         });
+		// navigate to the game page
 		navigate('/game');
 	};
 
@@ -97,5 +99,5 @@ const StartPage = (props: Props) => {
 		</div>
 	);
 };
-
+// explictly export the component
 export default StartPage;
