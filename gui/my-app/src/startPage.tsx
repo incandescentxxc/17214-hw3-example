@@ -1,10 +1,10 @@
 import React, { FormEvent, SyntheticEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './nameForm.css';
+import { useNavigate } from 'react-router-dom';
+import './startPage.css';
 
 type Props = {};
 
-const NameForm = (props: Props) => {
+const StartPage = (props: Props) => {
 	// useState Hooks
 	let [player1Name, setPlayer1Name] = useState('player1');
 	let [player2Name, setPlayer2Name] = useState('player2');
@@ -31,6 +31,24 @@ const NameForm = (props: Props) => {
 	};
 
 	let handleSubmit = (event: SyntheticEvent) => {
+        let info = {
+            name1: player1Name,
+            name2: player2Name,
+            power1: player1Power,
+            power2: player2Power,
+            startPlayer: 1,
+        };
+        fetch('/game/start', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(info),
+        }).then((response) => {
+            return response.json();
+        }).catch((err) => {
+            console.log("what is the err", err);
+        });
 		navigate('/game');
 	};
 
@@ -80,4 +98,4 @@ const NameForm = (props: Props) => {
 	);
 };
 
-export default NameForm;
+export default StartPage;

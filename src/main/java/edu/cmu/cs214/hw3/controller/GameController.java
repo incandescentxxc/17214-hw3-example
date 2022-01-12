@@ -70,4 +70,11 @@ public class GameController {
         return ResponseEntity.ok(gameService.skipWorker(body));
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<Game> test(@RequestBody GameInitBody body) throws InvalidGameException, InvalidParaException {
+        log.info("start game: request: {}", body);
+        System.out.println("success!");
+        return ResponseEntity.ok(gameService.createGame(body));
+    }
+
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './santorini';
+import Santorini from './santorini';
 
 import './index.css';
-import NameForm from './nameForm';
+import StartPage from './startPage';
 
 ReactDOM.render(
 	<BrowserRouter>
 		<Routes>
-			<Route path="/" element={<NameForm />} />
-			<Route path="game" element={<App />} />
+			<Route path="/" element={<StartPage />} />
+			<Route path="game" element={<Santorini />} />
 		</Routes>
 	</BrowserRouter>,
 	document.getElementById('root'),
