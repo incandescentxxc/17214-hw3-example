@@ -1,51 +1,54 @@
-import React, { ChangeEvent, Component, FormEvent, SyntheticEvent } from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import React, { FormEvent, SyntheticEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {};
 
-type State = {
-	player1Name: string;
-    player2Name: string;
-};
+const NameForm = (props: Props) => {
+    
+    // useState Hooks
+    let [player1Name, setPlayer1Name] = useState('player1');
+    let [player2Name, setPlayer2Name] = useState('player2');
 
-export class NameForm extends Component<Props, State> {
-	constructor(props: any) {
-		super(props);
-		this.state = { player1Name: 'player1', player2Name: 'player2' };
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
+    // useNavigate Hook, used for navigating to the other page
+    let navigate = useNavigate();
 
-	handleChange(event: FormEvent<HTMLInputElement>, playerId: string) {
-        if(playerId === 'player1') {
-            this.setState({ player1Name: event.currentTarget.value});
-        } else {
-            this.setState({ player2Name: event.currentTarget.value});
-        }
-	}
+    let handleChange = (event: FormEvent<HTMLInputElement>, playerId: string) => {
+        if (playerId === 'player1') {
+            setPlayer1Name(event.currentTarget.value);
+		} else {
+            setPlayer2Name(event.currentTarget.value);
+		}
+    }
+    
+    let handleSubmit = (event: SyntheticEvent) => {
+        navigate('/game');
+    }
 
-	handleSubmit(event: SyntheticEvent) {
-		console.log('hahah');
-        
-	}
-
-	render() {
-		return (
-			<>
-				<form onSubmit={this.handleSubmit}>
-					<label>
-						Player1 Name:
-						<input type="text" value={this.state.player1Name} onChange={(e) => this.handleChange(e, 'player1')} />
-					</label>
-                    <label>
-                        Player2 Name:
-                        <input type="text" value={this.state.player2Name} onChange={(e) => this.handleChange(e, 'player2')} />
-                    </label>
-					<input type="submit" value="Submit" />
-				</form>
-				<Link to="/option">ss</Link>
-			</>
-		);
-	}
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Player1 Name:
+                    <input
+                        type="text"
+                        value={player1Name}
+                        onChange={(e) => handleChange(e, 'player1')}
+                    />
+                </label>
+                <label>
+                    Player2 Name:
+                    <input
+                        type="text"
+                        value={player2Name}
+                        onChange={(e) => handleChange(e, 'player2')}
+                    />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+            <Link to="/game">ss</Link>
+        </>
+    );
 }
+
+export default NameForm;
+

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import App from './App';
 
 import './index.css';
-import { NameForm } from './nameForm';
+import NameForm from './nameForm';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <NameForm />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<NameForm />} />
+			<Route path="game" element={<App />} />
+		</Routes>
+	</BrowserRouter>,
+	document.getElementById('root'),
 );
-
