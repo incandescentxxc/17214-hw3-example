@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './santorini.css';
+import './styles/santorini.css';
 
 type santProps = {};
 

@@ -1,6 +1,6 @@
 import React, { FormEvent, SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './startPage.css';
+import './styles/startPage.css';
 
 type Props = {};
 
