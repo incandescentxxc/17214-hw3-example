@@ -1,13 +1,31 @@
 package edu.cmu.cs214.hw3;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.io.IOException;
 
+import edu.cmu.cs214.hw3.service.GameHandler;
+import fi.iki.elonen.NanoHTTPD;
+import fi.iki.elonen.router.RouterNanoHTTPD;
 
-
-@SpringBootApplication
-public class App {
-    public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+public class App extends RouterNanoHTTPD{
+    public App() throws IOException {
+        super(8080);
+        start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
     }
+
+    public static void main(String[] args) throws IOException {
+        new App();        
+    }
+
+    @Override
+    public void addMappings() {
+        addRoute("/", IndexHandler.class);
+        addRoute("/test", GameHandler.class);
+    }
+
+
+    @Override
+    public Response serve(IHTTPSession session) {
+        return newFixedLengthResponse("Hello world");
+    }
+    
 }
