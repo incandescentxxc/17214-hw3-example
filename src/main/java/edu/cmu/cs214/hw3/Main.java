@@ -1,10 +1,8 @@
 
 package edu.cmu.cs214.hw3;
 
-import com.linecorp.armeria.common.HttpResponse;
 import com.linecorp.armeria.server.Server;
 import com.linecorp.armeria.server.ServerBuilder;
-import com.linecorp.armeria.server.docs.DocService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +19,7 @@ public class Main {
             logger.info("Server has stopped.");
         }));
         server.start().join();
-        logger.info("Server has been started. Serving dummy service at http://localhost:{}", server.activeLocalPort());
+        logger.info("Server has been running at http://localhost:{}", server.activeLocalPort());
     }
 
     static Server newServer(int port) {
