@@ -1,4 +1,4 @@
-package edu.cmu.cs214.hw3.controller.dto;
+package edu.cmu.cs214.hw3.dto;
 
 import edu.cmu.cs214.hw3.model.GodPower;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package edu.cmu.cs214.hw3.controller.dto;
+package edu.cmu.cs214.hw3.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

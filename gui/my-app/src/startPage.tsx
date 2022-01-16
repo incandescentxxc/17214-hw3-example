@@ -8,8 +8,8 @@ const StartPage = (props: Props) => {
 	// useState Hooks
 	let [player1Name, setPlayer1Name] = useState('player1');
 	let [player2Name, setPlayer2Name] = useState('player2');
-	let [player1Power, setPlayer1Power] = useState('');
-	let [player2Power, setPlayer2Power] = useState('');
+	let [player1Power, setPlayer1Power] = useState('ATHENA');
+	let [player2Power, setPlayer2Power] = useState('DEMETER');
 
 	// useNavigate Hook, used for navigating to the other page
 	let navigate = useNavigate();
@@ -39,7 +39,7 @@ const StartPage = (props: Props) => {
             startPlayer: 1,
         };
 		// generate HTTP request to the backend
-        fetch('/game/start', {
+        fetch('/test', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
