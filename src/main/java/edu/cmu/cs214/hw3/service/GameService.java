@@ -2,27 +2,32 @@ package edu.cmu.cs214.hw3.service;
 
 import java.util.UUID;
 
-import org.springframework.stereotype.Service;
+import com.linecorp.armeria.common.HttpResponse;
+import com.linecorp.armeria.server.annotation.ExceptionHandler;
+import com.linecorp.armeria.server.annotation.Post;
 
-import edu.cmu.cs214.hw3.controller.dto.GameInitBody;
-import edu.cmu.cs214.hw3.controller.dto.GameOperations;
+import edu.cmu.cs214.hw3.dto.GameInitBody;
+import edu.cmu.cs214.hw3.dto.GameOperations;
+import edu.cmu.cs214.hw3.exception.BadRequestExceptionHandler;
 import edu.cmu.cs214.hw3.exception.InvalidGameException;
 import edu.cmu.cs214.hw3.exception.InvalidParaException;
 import edu.cmu.cs214.hw3.model.game.Game;
 import edu.cmu.cs214.hw3.storage.GameStorage;
 import lombok.AllArgsConstructor;
 
-@Service
 @AllArgsConstructor
 public class GameService {
-    public Game createGame(GameInitBody body) {
+
+    @Post("/start")
+    public HttpResponse createGame(GameInitBody body) {
         Game game = new Game(body);
         game.setId(UUID.randomUUID().toString());
         GameStorage.getInstance().setGame(game);
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game selectWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/select")
+    public HttpResponse selectWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -31,10 +36,11 @@ public class GameService {
                 operations.getPositionY())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game unSelectWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/unselect")
+    public HttpResponse unSelectWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -42,10 +48,11 @@ public class GameService {
         if (!game.unSelect(operations.getPlayerId(), operations.getPositionX(), operations.getPositionY())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game placeWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/placeWorker")
+    public HttpResponse placeWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -54,10 +61,11 @@ public class GameService {
         if (!game.placeWorker(operations.getPlayerId(), operations.getPositionX(), operations.getPositionY())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game moveWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/move")
+    public HttpResponse moveWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -66,10 +74,11 @@ public class GameService {
         if (!game.move(operations.getPlayerId(), operations.getPositionX(), operations.getPositionY())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game buildWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/build")
+    public HttpResponse buildWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -79,10 +88,11 @@ public class GameService {
                 operations.getBuildDome())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
     }
 
-    public Game skipWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
+    @Post("/skip")
+    public HttpResponse skipWorker(GameOperations operations) throws InvalidGameException, InvalidParaException {
         if (!GameStorage.getInstance().getGames().containsKey(operations.getGameId())) {
             throw new InvalidGameException("Game not found.");
         }
@@ -91,7 +101,16 @@ public class GameService {
         if (!game.skip(operations.getPlayerId(), operations.getPositionX(), operations.getPositionY())) {
             throw new InvalidParaException("Input parameter invalid.");
         }
-        return game;
+        return HttpResponse.ofJson(game);
+    }
+
+    @Post("/test")
+    @ExceptionHandler(BadRequestExceptionHandler.class)
+    public HttpResponse testGame(GameInitBody body) {
+        Game game = new Game(body);
+        game.setId(UUID.randomUUID().toString());
+        GameStorage.getInstance().setGame(game);
+        return HttpResponse.ofJson(game);
     }
 
 }

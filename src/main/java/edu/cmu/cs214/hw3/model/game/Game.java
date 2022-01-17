@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import edu.cmu.cs214.hw3.controller.dto.GameInitBody;
+import edu.cmu.cs214.hw3.dto.GameInitBody;
 import edu.cmu.cs214.hw3.model.board.Board;
 import edu.cmu.cs214.hw3.model.board.filterStrategies.BuildFilter;
 import edu.cmu.cs214.hw3.model.board.filterStrategies.DefaultFilter;
