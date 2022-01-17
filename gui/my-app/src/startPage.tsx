@@ -42,7 +42,7 @@ const StartPage = (props: Props) => {
 			startPlayer: 1,
 		};
 		// generate HTTP request to the backend
-		fetch('/test', {
+		fetch('/start', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -58,8 +58,9 @@ const StartPage = (props: Props) => {
 			.catch((err) => {
 				console.log('frontend init the game failed', err);
 			});
-		// navigate to the game page
-		navigate('/game');
+			// navigate to the game page
+			navigate('/game');
+
 	};
 
 	return (

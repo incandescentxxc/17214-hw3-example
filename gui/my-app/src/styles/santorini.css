@@ -1,1 +1,35 @@
 /* define your stylesheet here for santorini game page */
+.board {
+    width: 600px;
+}
+.square {
+	width: 100px;
+	background: #fff;
+	border: 3px solid #999;
+	border-radius: 1px;
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 100px;
+	height: 100px;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 0;
+	text-align: center;
+	margin: 1px;
+}
+
+.selectSquare {
+	cursor: pointer;
+	border: 3px solid palegreen;
+}
+
+.moveSquare {
+	cursor: pointer;
+	border: 3px solid #fee440;
+}
+
+.buildSquare {
+	cursor: pointer;
+	border: 3px solid #ff865e;
+}

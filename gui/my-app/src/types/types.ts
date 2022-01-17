@@ -17,6 +17,7 @@ export interface WorkerData {
 
 export interface GridData {
 	id: string;
+	worker: WorkerData;
 	tower: TowerData;
 }
 
