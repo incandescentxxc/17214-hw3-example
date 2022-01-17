@@ -1,5 +1,6 @@
-import React, { FormEvent, SyntheticEvent, useState } from 'react';
+import React, { FormEvent, SyntheticEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GameContext from './gameContext';
 import './styles/startPage.css';
 
 type Props = {};
@@ -30,26 +31,33 @@ const StartPage = (props: Props) => {
 		}
 	};
 
+	const { setGameId } = useContext(GameContext);
+
 	let handleSubmit = (event: SyntheticEvent) => {
-        let info = {
-            name1: player1Name,
-            name2: player2Name,
-            power1: player1Power,
-            power2: player2Power,
-            startPlayer: 1,
-        };
+		let info = {
+			name1: player1Name,
+			name2: player2Name,
+			power1: player1Power,
+			power2: player2Power,
+			startPlayer: 1,
+		};
 		// generate HTTP request to the backend
-        fetch('/test', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(info),
-        }).then((response) => {
-            return response.json();
-        }).catch((err) => {
-            console.log("frontend init the game failed", err);
-        });
+		fetch('/test', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(info),
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((res) => {
+				setGameId(res.id);
+			})
+			.catch((err) => {
+				console.log('frontend init the game failed', err);
+			});
 		// navigate to the game page
 		navigate('/game');
 	};

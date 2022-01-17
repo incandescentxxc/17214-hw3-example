@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import com.linecorp.armeria.common.HttpResponse;
 import com.linecorp.armeria.server.annotation.ExceptionHandler;
+import com.linecorp.armeria.server.annotation.Get;
+import com.linecorp.armeria.server.annotation.Param;
 import com.linecorp.armeria.server.annotation.Post;
 
 import edu.cmu.cs214.hw3.dto.GameInitBody;
@@ -110,6 +112,12 @@ public class GameService {
         Game game = new Game(body);
         game.setId(UUID.randomUUID().toString());
         GameStorage.getInstance().setGame(game);
+        return HttpResponse.ofJson(game);
+    }
+
+    @Get("/check/:id")
+    public HttpResponse checkGame(@Param String id) {
+        Game game = GameStorage.getInstance().getGames().get(id);
         return HttpResponse.ofJson(game);
     }
 
