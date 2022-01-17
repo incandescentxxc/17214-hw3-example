@@ -2,7 +2,6 @@ package edu.cmu.cs214.hw3.model.playerTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;

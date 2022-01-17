@@ -1,7 +1,6 @@
 package edu.cmu.cs214.hw3.model.player;
 
 import edu.cmu.cs214.hw3.model.board.Board;
-import edu.cmu.cs214.hw3.model.board.Grid;
 import edu.cmu.cs214.hw3.model.worker.Worker;
 
 /**

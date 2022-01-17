@@ -8,15 +8,9 @@ import edu.cmu.cs214.hw3.model.board.Grid;
 import edu.cmu.cs214.hw3.model.player.Player;
 import edu.cmu.cs214.hw3.model.worker.Worker;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
 
 public class playerTest {
     private Player player1;

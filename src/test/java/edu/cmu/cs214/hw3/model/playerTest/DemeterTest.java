@@ -6,13 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import edu.cmu.cs214.hw3.model.board.Board;
-import edu.cmu.cs214.hw3.model.board.Grid;
-import edu.cmu.cs214.hw3.model.player.Artemis;
-import edu.cmu.cs214.hw3.model.player.Athena;
 import edu.cmu.cs214.hw3.model.player.Demeter;
-import edu.cmu.cs214.hw3.model.player.Hephaestus;
-import edu.cmu.cs214.hw3.model.player.Minotaur;
-import edu.cmu.cs214.hw3.model.player.Pan;
 import edu.cmu.cs214.hw3.model.player.Player;
 import edu.cmu.cs214.hw3.model.worker.Worker;
 

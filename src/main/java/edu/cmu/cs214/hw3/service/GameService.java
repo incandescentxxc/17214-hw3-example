@@ -6,8 +6,6 @@ import com.linecorp.armeria.common.HttpResponse;
 import com.linecorp.armeria.server.annotation.ExceptionHandler;
 import com.linecorp.armeria.server.annotation.Post;
 
-import org.springframework.stereotype.Service;
-
 import edu.cmu.cs214.hw3.dto.GameInitBody;
 import edu.cmu.cs214.hw3.dto.GameOperations;
 import edu.cmu.cs214.hw3.exception.BadRequestExceptionHandler;
@@ -17,7 +15,6 @@ import edu.cmu.cs214.hw3.model.game.Game;
 import edu.cmu.cs214.hw3.storage.GameStorage;
 import lombok.AllArgsConstructor;
 
-@Service
 @AllArgsConstructor
 public class GameService {
 
